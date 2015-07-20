@@ -176,11 +176,12 @@ a.subtle:hover {
 	right: 0;
 	z-index: 12;
 }
-.maintabbar .overflow button {
-	height: 36px;
-	width: 29px;
+.maintabbar .overflow .button {
+	height: 37px;
+	width: 32px;
 	font-size: 12pt;
 	margin: 0;
+	border-radius: 0;
 }
 
 .button {
@@ -280,7 +281,8 @@ a.subtle:hover {
 .tabbar a.button i.text + span {
 	margin-right: -6px;
 }
-.tabbar a.button:hover {
+.tabbar a.button:hover,
+.tablist a.button:hover {
 	z-index: 10;
 }
 .tabbar a.button.cur,
@@ -304,10 +306,10 @@ a.subtle:hover {
 	display: inline-block;
 	margin: 0 0 0 -18px;
 	width: 18px;
-	position: relative;
-	z-index: 11;
 	top: 5px;
 	vertical-align: top;
+	position: relative;
+	z-index: 11;
 }
 .tabbar a.cur + .closebutton {
 	top: 4px;
@@ -363,9 +365,6 @@ a.subtle:hover {
 	border-bottom-left-radius: 5px;
 	border-bottom-right-radius: 5px;
 }
-.tablist a.button:hover {
-	z-index: 20;
-}
 .tablist .closebutton {
 	display: block;
 	float: right;
@@ -375,6 +374,9 @@ a.subtle:hover {
 	font-size: 14px;
 	width: 28px;
 	text-align: center;
+
+	position: relative;
+	z-index: 11;
 }
 .tablist i.text {
 	font-size: 9pt;
@@ -1277,6 +1279,19 @@ a.ilink:hover {
 .tournament-tools.active {
 	display: block;
 }
+.tournament-team {
+	padding-bottom: 5px;
+}
+.tournament-challenge-user,
+.tournament-challenged-message,
+.tournament-challenging-message,
+.tournament-challengeby {
+	font-size: 9pt;
+	padding-bottom: 5px;
+}
+.tournament-tools .button {
+	font-size: 9pt;
+}
 
 .tournament-join,
 .tournament-leave {
@@ -1302,7 +1317,10 @@ a.ilink:hover {
 	display: block;
 }
 
-div[class^='tournament-message-'], div[class*=' tournament-message-'] {
+.tournament-message-create,
+.tournament-message-start,
+.tournament-message-forceend,
+.tournament-message-end-winner {
 	font-weight: bold;
 }
 .tournament-message-end-bracket {
@@ -1467,6 +1485,9 @@ div[class^='tournament-message-'], div[class*=' tournament-message-'] {
 	width: 640px;
 	background: #EEF2F5;
 }
+.battle-chat-toggle {
+	display: none;
+}
 @media (max-width:639px) {
 	.ps-room .battle-controls {
 		left: 0;
@@ -1507,6 +1528,25 @@ div[class^='tournament-message-'], div[class*=' tournament-message-'] {
 	.battle-log,
 	.battle-log-add {
 		display: none;
+	}
+}
+@media (max-width:830px) {
+	.battle-chat-toggle {
+		display: block;
+		position: absolute;
+		top: 5px;
+		left: 6px;
+		font-size: 14px;
+		padding: 2px 5px;
+	}
+	.showing-chat .battle,
+	.showing-chat .battle-controls {
+		display: none;
+	}
+	.showing-chat .battle-log,
+	.showing-chat .battle-log-add {
+		left: 0;
+		display: block;
 	}
 }
 .shiftselect button,
@@ -1877,6 +1917,11 @@ div[class^='tournament-message-'], div[class*=' tournament-message-'] {
 .teamedit textarea {
 	width: 100%;
 	height: 100%;
+}
+
+.teamwrapper {
+	transform-origin: top left;
+	-webkit-transform-origin: top left;
 }
 
 .teambar {
@@ -2367,6 +2412,12 @@ div[class^='tournament-message-'], div[class*=' tournament-message-'] {
 	overflow: auto;
 	-webkit-overflow-scrolling: touch;
 	overflow-scrolling: touch;
+}
+.teamwrapper.scaled {
+	width: 640px;
+}
+.teamwrapper.scaled .teamchartbox {
+	bottom: auto;
 }
 .teamchartbox.individual {
 	overflow: visible;

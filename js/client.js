@@ -1790,7 +1790,7 @@
 			var offset = $lastLi.offset();
 			var width = $lastLi.outerWidth();
 			if (offset.top >= 37 || offset.left + width > $(window).width() - 165) {
-				this.$tabbar.append('<div class="overflow"><button name="tablist"><i class="icon-caret-down"></i></button></div>');
+				this.$tabbar.append('<div class="overflow"><button name="tablist" class="button"><i class="icon-caret-down"></i></button></div>');
 			}
 
 			if (app.rooms['']) app.rooms[''].updateRightMenu();
@@ -1800,7 +1800,7 @@
 			this.$('.maintabbar').addClass('minitabbar');
 			var notificationClass = '';
 			for (var i in app.rooms) {
-				if (app.rooms[i].notificationClass === ' notifying') notificationClass = ' notifying';
+				if (app.rooms[i] !== app.curRoom && app.rooms[i].notificationClass === ' notifying') notificationClass = ' notifying';
 			}
 			var buf = '<ul><li><a class="button minilogo' + notificationClass + '" href="' + app.root + '"><img src="//play.pokemonshowdown.com/favicon-128.png" width="32" height="32" alt="PS!" /><i class="icon-caret-down" style="display:inline-block"></i></a></li></ul>';
 

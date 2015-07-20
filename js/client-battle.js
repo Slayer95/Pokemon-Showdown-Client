@@ -8,7 +8,7 @@
 		initialize: function (data) {
 			this.me = {};
 
-			this.$el.addClass('ps-room-opaque').html('<div class="battle">Battle is here</div><div class="foehint"></div><div class="battle-log"></div><div class="battle-log-add">Connecting...</div><div class="battle-controls"></div>');
+			this.$el.addClass('ps-room-opaque').html('<div class="battle">Battle is here</div><div class="foehint"></div><div class="battle-log"></div><div class="battle-log-add">Connecting...</div><div class="battle-controls"></div><button class="battle-chat-toggle button" name="showChat">Chat</button>');
 
 			this.$battle = this.$el.find('.battle');
 			this.$controls = this.$el.find('.battle-controls');
@@ -39,6 +39,14 @@
 		join: function () {
 			app.send('/join ' + this.id);
 		},
+		showChat: function() {
+			this.$('.battle-chat-toggle').attr('name', 'hideChat').text('Battle');
+			this.$el.addClass('showing-chat');
+		},
+		hideChat: function() {
+			this.$('.battle-chat-toggle').attr('name', 'showChat').text('Chat');
+			this.$el.removeClass('showing-chat');
+		},
 		leave: function () {
 			if (!this.expired) app.send('/leave ' + this.id);
 			if (this.battle) this.battle.destroy();
@@ -51,13 +59,13 @@
 			return true;
 		},
 		updateLayout: function () {
-			var width = this.$el.width();
+			var width = $(window).width();
 			if (width < 950) {
 				this.battle.messageDelay = 800;
 			} else {
 				this.battle.messageDelay = 8;
 			}
-			if (width < 640) {
+			if (width && width < 640) {
 				var scale = (width/640);
 				this.$battle.css('transform', 'scale(' + scale + ')');
 				this.$foeHint.css('transform', 'scale(' + scale + ')');
